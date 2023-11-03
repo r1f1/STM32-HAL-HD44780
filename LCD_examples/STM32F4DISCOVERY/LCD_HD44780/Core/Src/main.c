@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "lcd.h"
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,6 +96,28 @@ int main(void)
   lcd_init_I2C(&lcd, &hi2c1);
 
   lcd_print_string(&lcd, "LCD library");
+  HAL_Delay(2000);
+
+  lcd_set_cursor(&lcd, DISPLAY_ROW_2, DISPLAY_COLUMN_1);
+
+  lcd_send_command(&lcd, LCD_CMD_Don_nC_BL);
+
+  lcd_print_string(&lcd, "LCD library");
+  HAL_Delay(2000);
+
+  lcd_display_clear(&lcd);
+  lcd_display_return_home(&lcd);
+  lcd_send_command(&lcd, LCD_CMD_Don_nC_nBL);
+
+  uint16_t date_num[3] = {3, 11, 2023};
+  char date_char[20];
+  sprintf(date_char, "0%d/%d/%d", date_num[0], date_num[1], date_num[2]);
+
+  lcd_print_string(&lcd, date_char);
+  HAL_Delay(2000);
+
+  lcd_set_cursor(&lcd, DISPLAY_ROW_2, DISPLAY_COLUMN_4);
+  lcd_print_string(&lcd, "HD44780");
 
   /* USER CODE END 2 */
 

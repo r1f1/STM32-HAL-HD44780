@@ -2,7 +2,7 @@
 /**
  ******************************************************************************
  * @file     lcd.c
- * @author   Rafael Hernández Marrero (rafaelh96@gmail.com)
+ * @author   Rafael Hern├índez Marrero (rafaelh96@gmail.com)
  * @version  V1.0
  * @date     02/11/2023 20:00:00
  * @brief	 Functions definitions available to the user for working with the HD44780 LCD along with the I/O expander for I2C bus PCF8574

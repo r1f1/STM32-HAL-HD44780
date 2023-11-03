@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
  * @file     lcd.h
- * @author   Rafael Hernández Marrero (rafaelh96@gmail.com)
+ * @author   Rafael Hern├índez Marrero (rafaelh96@gmail.com)
  * @version  V1.0
  * @date     02/11/2023 20:00:00
  * @brief	 Functions declarations available to the user for working with the HD44780 LCD along with the I/O expander for I2C bus PCF8574
@@ -17,6 +17,28 @@
 #define INIT_2						0x2
 #define RS_PIN_RESET				0
 #define RS_PIN_SET					1
+
+//*********************************** Display rows and columns *******************************//
+
+#define DISPLAY_ROW_1				1
+#define DISPLAY_ROW_2				2
+#define DISPLAY_COLUMN_1			1
+#define DISPLAY_COLUMN_2			2
+#define DISPLAY_COLUMN_3			3
+#define DISPLAY_COLUMN_4			4
+#define DISPLAY_COLUMN_5			5
+#define DISPLAY_COLUMN_6			6
+#define DISPLAY_COLUMN_7			7
+#define DISPLAY_COLUMN_8			8
+#define DISPLAY_COLUMN_9			9
+#define DISPLAY_COLUMN_10			10
+#define DISPLAY_COLUMN_11			11
+#define DISPLAY_COLUMN_12			12
+#define DISPLAY_COLUMN_13			13
+#define DISPLAY_COLUMN_14			14
+#define DISPLAY_COLUMN_15			15
+#define DISPLAY_COLUMN_16			16
+
 
 //***************************************** Includes ******************************************//
 
@@ -62,10 +84,10 @@ typedef struct{
 
 /* Display on/off control */
 
-#define LCD_CMD_Doff_nC_nBL 		0x08 			// Turn off display (no characters are not shown), cursor is not displayed and the character box is not blinking
-#define LCD_CMD_Doff_nC_BL 			0x09 			// Turn off display (no characters are not shown), cursor is not displayed and the character box is blinking
-#define LCD_CMD_Doff_C_nBL 			0x0A 			// Turn off display (no characters are not shown), cursor is displayed and the character box is not blinking
-#define LCD_CMD_Doff_C_BL 			0x0B 			// Turn off display (no characters are not shown), cursor is displayed and the character box is blinking
+#define LCD_CMD_Doff_nC_nBL 		0x08 			// Turn off display (no characters are shown), cursor is not displayed and the character box is not blinking
+#define LCD_CMD_Doff_nC_BL 			0x09 			// Turn off display (no characters are shown), cursor is not displayed and the character box is blinking
+#define LCD_CMD_Doff_C_nBL 			0x0A 			// Turn off display (no characters are shown), cursor is displayed and the character box is not blinking
+#define LCD_CMD_Doff_C_BL 			0x0B 			// Turn off display (no characters are shown), cursor is displayed and the character box is blinking
 #define LCD_CMD_Don_nC_nBL 			0x0C 			// Turn on display (characters are shown), cursor is not displayed and the character box is not blinking
 #define LCD_CMD_Don_nC_BL 			0x0D 			// Turn on display (characters are shown), cursor is not displayed and the character box is blinking
 #define LCD_CMD_Don_C_nBL 			0x0E 			// Turn on display (characters are shown), cursor is displayed and the character box is not blinking
