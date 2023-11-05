@@ -1,0 +1,123 @@
+\doxysection{lcd.\+h}
+\hypertarget{lcd_8h_source}{}\label{lcd_8h_source}\mbox{\hyperlink{lcd_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ LCD\_H\_}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ LCD\_H\_}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//*****************************************\ Includes\ ******************************************//}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}stm32f4xx\_hal.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//***************************************\ Helper\ macros\ ***************************************//}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ INIT\_3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x3}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ INIT\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x2}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ RS\_PIN\_RESET\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ RS\_PIN\_SET\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//***********************************\ Display\ rows\ and\ columns\ *******************************//}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ DISPLAY\_ROW\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ DISPLAY\_ROW\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_1\ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_2\ \ \ \ \ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_3\ \ \ \ \ \ \ \ \ \ \ \ 3}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_4\ \ \ \ \ \ \ \ \ \ \ \ 4}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_5\ \ \ \ \ \ \ \ \ \ \ \ 5}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_6\ \ \ \ \ \ \ \ \ \ \ \ 6}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_7\ \ \ \ \ \ \ \ \ \ \ \ 7}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_8\ \ \ \ \ \ \ \ \ \ \ \ 8}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_9\ \ \ \ \ \ \ \ \ \ \ \ 9}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_10\ \ \ \ \ \ \ \ \ \ \ 10}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_11\ \ \ \ \ \ \ \ \ \ \ 11}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_12\ \ \ \ \ \ \ \ \ \ \ 12}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_13\ \ \ \ \ \ \ \ \ \ \ 13}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_14\ \ \ \ \ \ \ \ \ \ \ 14}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_15\ \ \ \ \ \ \ \ \ \ \ 15}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ DISPLAY\_COLUMN\_16\ \ \ \ \ \ \ \ \ \ \ 16}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//*****************************************\ LCD\ types\ *****************************************//}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}\{}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ I2C\_HandleTypeDef\ \ \ *I2C\_Handle;}
+\DoxyCodeLine{00058\ \ \ \ \ uint32\_t\ \ \ \ \ \ \ \ \ \ \ \ I2C\_Addr;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \}\mbox{\hyperlink{struct_l_c_d___handle_type_def}{LCD\_HandleTypeDef}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//*****************************************\ Pin\ index\ *****************************************//}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ LCD\_IO\_RS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ LCD\_IO\_RW\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ LCD\_IO\_EN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ LCD\_IO\_BL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 3}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ LCD\_IO\_D4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ LCD\_IO\_D5\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 5}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ LCD\_IO\_D6\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 6}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ LCD\_IO\_D7\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 7}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//***********************************\ PCF8574\ slave\ address\ ************************************//}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ SLAVE\_ADDRESS\_PCF\ \ \ \ \ \ \ \ \ \ \ 0x27<<1}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{//***************************************\ LCD\ Commands\ ****************************************//}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_CLEAR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Clear\ display}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_HOME\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Return\ home}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{comment}{/*\ Entry\ mode\ set\ */}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_CD\_nDS\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x04\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Cursor\ decrement\ and\ display\ doesn't\ shift}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_CD\_DSR\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x05\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Cursor\ decrement\ and\ display\ shifts\ to\ the\ right}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_CI\_nDS\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x06\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Cursor\ increment\ and\ display\ doesn't\ shift}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_CI\_DSL\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x07\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Cursor\ increment\ and\ display\ shifts\ to\ the\ left}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{comment}{/*\ Display\ on/off\ control\ */}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_Doff\_nC\_nBL\ \ \ \ \ \ \ \ \ 0x08\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Turn\ off\ display\ (no\ characters\ are\ shown),\ cursor\ is\ not\ displayed\ and\ the\ character\ box\ is\ not\ blinking}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_Doff\_nC\_BL\ \ \ \ \ \ \ \ \ \ 0x09\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Turn\ off\ display\ (no\ characters\ are\ shown),\ cursor\ is\ not\ displayed\ and\ the\ character\ box\ is\ blinking}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_Doff\_C\_nBL\ \ \ \ \ \ \ \ \ \ 0x0A\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Turn\ off\ display\ (no\ characters\ are\ shown),\ cursor\ is\ displayed\ and\ the\ character\ box\ is\ not\ blinking}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_Doff\_C\_BL\ \ \ \ \ \ \ \ \ \ \ 0x0B\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Turn\ off\ display\ (no\ characters\ are\ shown),\ cursor\ is\ displayed\ and\ the\ character\ box\ is\ blinking}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_Don\_nC\_nBL\ \ \ \ \ \ \ \ \ \ 0x0C\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Turn\ on\ display\ (characters\ are\ shown),\ cursor\ is\ not\ displayed\ and\ the\ character\ box\ is\ not\ blinking}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_Don\_nC\_BL\ \ \ \ \ \ \ \ \ \ \ 0x0D\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Turn\ on\ display\ (characters\ are\ shown),\ cursor\ is\ not\ displayed\ and\ the\ character\ box\ is\ blinking}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_Don\_C\_nBL\ \ \ \ \ \ \ \ \ \ \ 0x0E\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Turn\ on\ display\ (characters\ are\ shown),\ cursor\ is\ displayed\ and\ the\ character\ box\ is\ not\ blinking}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_Don\_C\_BL\ \ \ \ \ \ \ \ \ \ \ \ 0x0F\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Turn\ on\ display\ (characters\ are\ shown),\ cursor\ is\ displayed\ and\ the\ character\ box\ is\ blinking}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{comment}{/*\ Cursor\ or\ display\ shift\ */}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_MCL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x10\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Move\ cursor\ to\ the\ left}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_MCR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x14\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Move\ cursor\ to\ the\ right}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_MDL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x18\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Move\ display\ to\ the\ left}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_MDR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x1C\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Move\ display\ to\ the\ right}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{comment}{/*\ Function\ set\ */}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_4DL\_1L\_5x8D\ \ \ \ \ \ \ \ \ 0x20\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 4-\/bits\ data\ length,\ 1\ line\ displayed\ and\ 5x8\ dots\ character\ font}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_4DL\_1L\_5x10D\ \ \ \ \ \ \ \ 0x24\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 4-\/bits\ data\ length,\ 1\ line\ displayed\ and\ 5x10\ dots\ character\ font}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_4DL\_2L\_5x8D\ \ \ \ \ \ \ \ \ 0x28\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 4-\/bits\ data\ length,\ 2\ lines\ displayed\ and\ 5x8\ dots\ character\ font}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_4DL\_2L\_5x10D\ \ \ \ \ \ \ \ 0x2C\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 4-\/bits\ data\ length,\ 2\ lines\ displayed\ and\ 5x10\ dots\ character\ font}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_5DL\_1L\_5x8D\ \ \ \ \ \ \ \ \ 0x30\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 5-\/bits\ data\ length,\ 1\ line\ displayed\ and\ 5x8\ dots\ character\ font}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_5DL\_1L\_5x10D\ \ \ \ \ \ \ \ 0x34\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 5-\/bits\ data\ length,\ 1\ line\ displayed\ and\ 5x10\ dots\ character\ font}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_5DL\_2L\_5x8D\ \ \ \ \ \ \ \ \ 0x38\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 5-\/bits\ data\ length,\ 2\ lines\ displayed\ and\ 5x8\ dots\ character\ font}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ LCD\_CMD\_5DL\_2L\_5x10D\ \ \ \ \ \ \ \ 0x3C\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 5-\/bits\ data\ length,\ 2\ lines\ displayed\ and\ 5x10\ dots\ character\ font}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{comment}{//**************************************\ Function\ declarations\ ****************************************//}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{lcd_8h_aea39bc283e80c4a8787ef57a1bb0ebd1}{lcd\_init\_I2C}}(\mbox{\hyperlink{struct_l_c_d___handle_type_def}{LCD\_HandleTypeDef}}\ *,\ I2C\_HandleTypeDef\ *);}
+\DoxyCodeLine{00123\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{lcd_8h_af0c66cc9f9b1db8c71b5153ebe9f8da7}{lcd\_init}}(\mbox{\hyperlink{struct_l_c_d___handle_type_def}{LCD\_HandleTypeDef}}\ *);}
+\DoxyCodeLine{00124\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{lcd_8h_a23b0739b49f873e866447a585d547b02}{lcd\_send\_command}}(\mbox{\hyperlink{struct_l_c_d___handle_type_def}{LCD\_HandleTypeDef}}\ *,\ uint8\_t\ cmd);}
+\DoxyCodeLine{00125\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{lcd_8h_ab2fd2e1d0385f7f5207327e70afa0991}{lcd\_print\_char}}(\mbox{\hyperlink{struct_l_c_d___handle_type_def}{LCD\_HandleTypeDef}}\ *,\ uint8\_t\ data);}
+\DoxyCodeLine{00126\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{lcd_8h_a57fbfde80c06e77bc19f034aa5bbf65c}{lcd\_display\_clear}}(\mbox{\hyperlink{struct_l_c_d___handle_type_def}{LCD\_HandleTypeDef}}\ *);}
+\DoxyCodeLine{00127\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{lcd_8h_ac05f8525db137a23824537ceaa822c47}{lcd\_display\_return\_home}}(\mbox{\hyperlink{struct_l_c_d___handle_type_def}{LCD\_HandleTypeDef}}\ *);}
+\DoxyCodeLine{00128\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{lcd_8h_a42289d5ae2164ad292af17d2f2e61eee}{lcd\_print\_string}}(\mbox{\hyperlink{struct_l_c_d___handle_type_def}{LCD\_HandleTypeDef}}\ *,\ \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{00129\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{lcd_8h_a10e98add5665d564113eede4c8b1fa40}{lcd\_set\_cursor}}(\mbox{\hyperlink{struct_l_c_d___handle_type_def}{LCD\_HandleTypeDef}}\ *,\ uint8\_t\ row,\ uint8\_t\ column);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ LCD\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}
